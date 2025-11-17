@@ -93,6 +93,9 @@ Deployed a Cowrie SSH/Telnet honeypot to capture real attacker behavior, analyze
 ### Attack Geolocation Map
 ![Attack Map](https://paradoxal.s-ul.eu/5wj8c8X1)
 
+### Discord Webhook Alerts With Abuse IPDB Integration
+![Webhooks](https://paradoxal.s-ul.eu/kN1lR4Ol)
+
 ## 💡 Lessons Learned
 
 **Security Insights:**
@@ -109,7 +112,6 @@ Deployed a Cowrie SSH/Telnet honeypot to capture real attacker behavior, analyze
 ## 🚀 Future Enhancements
 
 - [ ] Add HTTP/HTTPS honeypot (Glastopf)
-- [ ] Integrate with threat intelligence feeds (AbuseIPDB, VirusTotal)
 - [ ] Automated geolocation mapping of attackers
 - [ ] Machine learning for attack pattern detection
 - [ ] Automated threat reports via email/Slack
