@@ -6,8 +6,6 @@
 [![AWS](https://img.shields.io/badge/AWS-232F3E?style=flat&logo=amazon-aws&logoColor=white)](https://aws.amazon.com/)
 [![ELK Stack](https://img.shields.io/badge/ELK-005571?style=flat&logo=elastic&logoColor=white)](https://www.elastic.co/)
 
-![Architecture Diagram](screenshots/architecture-diagram.png)
-
 ## 📊 Project Overview
 
 Deployed a Cowrie SSH/Telnet honeypot to capture real attacker behavior, analyze attack patterns, and gather threat intelligence. The system logged all connection attempts, credentials, commands, and malware downloads for analysis.
