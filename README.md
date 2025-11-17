@@ -15,7 +15,7 @@ Deployed a Cowrie SSH/Telnet honeypot to capture real attacker behavior, analyze
 **Duration:** October 28 - November 17, 2024 (20 days)
 
 ### Key Statistics
-- 🌍 **415 unique attacker IPs** from [X] countries
+- 🌍 **415 unique attacker IPs** from 70+ countries
 - 🔌 **5,588 total connection attempts**
 - 🔐 **724 failed authentication attempts**
 
