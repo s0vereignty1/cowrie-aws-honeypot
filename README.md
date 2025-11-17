@@ -18,7 +18,6 @@ Deployed a Cowrie SSH/Telnet honeypot to capture real attacker behavior, analyze
 - 🌍 **415 unique attacker IPs** from [X] countries
 - 🔌 **5,588 total connection attempts**
 - 🔐 **724 failed authentication attempts**
-- 💾 **[X] malware samples** captured
 
 ## 🏗️ Architecture
 ```
