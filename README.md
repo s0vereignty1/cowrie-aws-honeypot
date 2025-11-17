@@ -127,10 +127,8 @@ This is a personal research project, but feedback and suggestions are welcome! O
 
 ## 📧 Contact
 
-s0v - [LinkedIn](your-linkedin) | [Portfolio](your-site) | [Email](pdxl5555@gmail.com)
+s0v - [LinkedIn](https://www.linkedin.com/in/michael-miller-15a594227) | [Portfolio](your-site) | [Email](pdxl5555@gmail.com)
 
 ---
 
-⭐ If you found this project interesting, please consider starring the repo!
-
-**Disclaimer:** This honeypot was deployed in an isolated environment for educational and research purposes only. No production systems were compromised in this research.
+**Disclaimer:** This honeypot was deployed in an isolated environment for educational and research purposes only. No production systems were compromised in this research. 
