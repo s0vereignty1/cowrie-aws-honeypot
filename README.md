@@ -26,7 +26,7 @@ Deployed a Cowrie SSH/Telnet honeypot to capture real attacker behavior, analyze
 │   AWS EC2       │         │  Raspberry Pi    │
 │                 │         │                  │
 │  ┌──────────┐   │         │  ┌────────────┐  │
-│  │ Cowrie   │   │ Tailscale│  │Elasticsearch│ │
+│  │ Cowrie   │   │ Tailscale│ │Elasticsearch│ │
 │  │ Honeypot │◄──┼─────────┼─►│  Logstash  │  │
 │  └────┬─────┘   │   VPN   │  │   Kibana   │  │
 │       │         │         │  └────────────┘  │
