@@ -77,21 +77,6 @@ Deployed a Cowrie SSH/Telnet honeypot to capture real attacker behavior, analyze
 
 [📈 Full Analysis & Visualizations](docs/findings.md)
 
-## 🛠️ Technical Implementation
-
-### Deployment
-```bash
-# Clone repository
-git clone https://github.com/yourusername/ssh-honeypot-threat-intelligence
-cd ssh-honeypot-threat-intelligence
-
-# Deploy honeypot (AWS EC2)
-cd configs
-docker-compose up -d
-
-# Configure Filebeat to ship logs to your ELK server
-# Edit configs/filebeat/filebeat.yml with your Logstash IP
-```
 
 ### Technologies Used
 - **Cloud Platform:** AWS EC2 (Ubuntu 24.04)
@@ -101,18 +86,13 @@ docker-compose up -d
 - **Networking:** Tailscale VPN, iptables
 - **Analysis:** Kibana dashboards, Python (optional)
 
-[📚 Complete Setup Guide](docs/setup-guide.md)
-
 ## 📸 Screenshots
 
 ### Kibana Dashboard
-![Kibana Dashboard](screenshots/kibana-dashboard.png)
+![Kibana Dashboard](https://paradoxal.s-ul.eu/4ZoUgCC4)
 
 ### Attack Geolocation Map
-![Attack Map](screenshots/attack-map.png)
-
-### Real-time Log Monitoring
-![Log Monitoring](screenshots/logs.png)
+![Attack Map](https://paradoxal.s-ul.eu/5wj8c8X1)
 
 ## 💡 Lessons Learned
 
