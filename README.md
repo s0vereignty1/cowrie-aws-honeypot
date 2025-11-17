@@ -125,7 +125,7 @@ This is a personal research project, but feedback and suggestions are welcome! O
 
 ## 📧 Contact
 
-**Your Name** - [LinkedIn](your-linkedin) | [Portfolio](your-site) | [Email](your-email)
+s0v - [LinkedIn](your-linkedin) | [Portfolio](your-site) | [Email](pdxl5555@gmail.com)
 
 ---
 
