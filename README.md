@@ -12,7 +12,7 @@
 
 Deployed a Cowrie SSH/Telnet honeypot to capture real attacker behavior, analyze attack patterns, and gather threat intelligence. The system logged all connection attempts, credentials, commands, and malware downloads for analysis.
 
-**Duration:** October 28 - November 17, 2024 (20 days)
+**Duration:** October 28 - November 17, 2024 (20 days) (Still Ongoing)
 
 ### Key Statistics
 - 🌍 **415 unique attacker IPs** from 70+ countries
