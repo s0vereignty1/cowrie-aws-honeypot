@@ -1,4 +1,4 @@
-# SSH/Telnet Honeypot - Threat Intelligence Research
+# SSH/Telnet Honeypot - Threat Intelligence Research Project
 
 > A production honeypot deployment on AWS EC2 capturing and analyzing real-world cyberattacks over a 3-week period.
 
@@ -121,7 +121,7 @@ MIT License - See [LICENSE](LICENSE) for details
 
 ## 🤝 Contributing
 
-This is a personal research project, but feedback and suggestions are welcome! Open an issue or submit a pull request.
+This was a personal project for me but if any of the config files have issues let me know.
 
 ## 📧 Contact
 
