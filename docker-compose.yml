@@ -1,0 +1,44 @@
+version: '3.8'
+services:
+  cowrie:
+    image: cowrie/cowrie:latest
+    container_name: cowrie
+    restart: unless-stopped
+    ports:
+      - "22:2222"  # SSH honeypot
+      - "23:2223"  # Telnet honeypot
+    volumes:
+      - cowrie_logs:/cowrie/cowrie-git/var/log/cowrie
+      - cowrie_downloads:/cowrie/cowrie-git/var/lib/cowrie/downloads
+    environment:
+      - COWRIE_JSON_ENABLED=yes
+    networks:
+      - cowrie_net
+
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:8.11.0
+    container_name: filebeat
+    restart: unless-stopped
+    user: root
+    volumes:
+      - ./filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
+      - cowrie_logs:/var/log/cowrie:ro
+      - filebeat_data:/usr/share/filebeat/data
+    environment:
+      - LOGSTASH_HOST=${LOGSTASH_HOST}
+      - LOGSTASH_PORT=${LOGSTASH_PORT:-5044}
+    network_mode: host
+    depends_on:
+      - cowrie
+
+networks:
+  cowrie_net:
+    driver: bridge
+
+volumes:
+  cowrie_logs:
+    driver: local
+  cowrie_downloads:
+    driver: local
+  filebeat_data:
+    driver: local
