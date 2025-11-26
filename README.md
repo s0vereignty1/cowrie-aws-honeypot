@@ -12,7 +12,7 @@
 
 ## 📊 Project Overview
 
-Deployed a Cowrie SSH/Telnet honeypot to capture real attacker behavior, analyze attack patterns, and gather threat intelligence. The system logged all connection attempts, credentials, commands, and malware downloads for analysis.
+This is a Cowrie SSH/Telnet honeypot to capture real attacker behavior, analyze attack patterns, and gather threat intelligence. The system logged all connection attempts, credentials, commands, and malware downloads for analysis. 
 
 **Duration:** October 28 - November 17, 2024 (20 days) (Still Ongoing)
 
@@ -99,7 +99,7 @@ Deployed a Cowrie SSH/Telnet honeypot to capture real attacker behavior, analyze
 
 ## 🚀 Future Enhancements
 
-- [ ] Add HTTP/HTTPS honeypot (Glastopf)
+- [ ] Add HTTP/HTTPS honeypot
 - [ ] Machine learning for attack pattern detection
 - [ ] Multi-region deployment for broader coverage
 
