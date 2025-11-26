@@ -5,6 +5,8 @@
 [![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat&logo=docker&logoColor=white)](https://www.docker.com/)
 [![AWS](https://img.shields.io/badge/AWS-232F3E?style=flat&logo=amazon-aws&logoColor=white)](https://aws.amazon.com/)
 [![ELK Stack](https://img.shields.io/badge/ELK-005571?style=flat&logo=elastic&logoColor=white)](https://www.elastic.co/)
+[![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)](https://www.python.org/)
+[![Bash](https://img.shields.io/badge/Bash-4EAA25?style=flat&logo=gnu-bash&logoColor=white)](https://www.gnu.org/software/bash/)
 
 ## 📊 Project Overview
 
@@ -103,16 +105,14 @@ Deployed a Cowrie SSH/Telnet honeypot to capture real attacker behavior, analyze
 
 **Technical Skills:**
 - Hands-on experience with cloud security infrastructure
-- Log aggregation at scale with ELK Stack
+- Log aggregation with ELK Stack
 - Container orchestration and networking
-- [Add more specific learnings]
+- Threat Analysis 
 
 ## 🚀 Future Enhancements
 
 - [ ] Add HTTP/HTTPS honeypot (Glastopf)
-- [ ] Automated geolocation mapping of attackers
 - [ ] Machine learning for attack pattern detection
-- [ ] Automated threat reports via email/Slack
 - [ ] Multi-region deployment for broader coverage
 
 ## 📝 License
