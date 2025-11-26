@@ -43,8 +43,6 @@ Deployed a Cowrie SSH/Telnet honeypot to capture real attacker behavior, analyze
 - **Network:** Tailscale mesh VPN
 - **Containerization:** Docker & Docker Compose
 
-[📖 Detailed Architecture Documentation](docs/architecture.md)
-
 ## 🔍 Key Findings
 
 ### Top Attack Patterns
@@ -113,10 +111,6 @@ MIT License - See [LICENSE](LICENSE) for details
 ## 🤝 Contributing
 
 This was a personal project for me but if any of the config files have issues let me know.
-
-## 📧 Contact
-
-s0v - [LinkedIn](https://www.linkedin.com/in/michael-miller-15a594227) | [Portfolio](your-site) | [Email](pdxl5555@gmail.com)
 
 ---
 
