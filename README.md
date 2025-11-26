@@ -1,6 +1,6 @@
 # SSH/Telnet Honeypot - Threat Intelligence Research Project
 
->  honeypot deployment on AWS EC2 capturing and analyzing real-world cyberattacks over a 3-week period.
+>  honeypot deployment on AWS EC2 capturing and analyzing real-world cyberattacks over a 3-week period. With discord webhook integration
 
 [![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat&logo=docker&logoColor=white)](https://www.docker.com/)
 [![AWS](https://img.shields.io/badge/AWS-232F3E?style=flat&logo=amazon-aws&logoColor=white)](https://aws.amazon.com/)
@@ -104,7 +104,7 @@ Deployed a Cowrie SSH/Telnet honeypot to capture real attacker behavior, analyze
 - [ ] Multi-region deployment for broader coverage
 
 ## 👨‍💻Setup Instructions 
-If you want to do this yourself I have included some setup instructions and a setup script at [SETUP INSTRUCTIONS](SETUP_INSTRUCTIONS.md)
+If you want to do this yourself I have included some setup instructions and a setup script at [SETUP INSTRUCTIONS](SETUP_INSTRUCTIONS.md) I can't gurantee they will work since its my first time doing something like this but hopefully it helps a little! :) 
 
 ## 📝 License
 
