@@ -68,7 +68,7 @@ Deployed a Cowrie SSH/Telnet honeypot to capture real attacker behavior, analyze
 **Top Attacker:** 
 - IP: `61.51.182.90` (China)
 - Attempts: 3,572 connections (64% of all traffic)
-- Pattern: Automated botnet scanner
+- Pattern: Most likely an automated botnet scanner
 
 ### Technologies Used
 - **Cloud Platform:** AWS EC2 (Ubuntu 24.04)
