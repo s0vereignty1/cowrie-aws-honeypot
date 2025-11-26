@@ -20,7 +20,7 @@ A step-by-step guide to deploy a distributed SSH/Telnet honeypot using AWS EC2 a
 
 ### Required:
 - ✅ AWS account with EC2 access (free tier eligible)
-- ✅ Raspberry Pi 4B (4GB+ RAM recommended, 64GB storage)
+- ✅ Raspberry Pi 4B or Equivelent (4GB+ RAM recommended, 64GB storage)
 - ✅ Tailscale account (free tier: https://tailscale.com)
 - ✅ SSH client (Terminal on Mac/Linux, PuTTY on Windows)
 - ✅ Basic Linux command line knowledge
@@ -85,6 +85,8 @@ A step-by-step guide to deploy a distributed SSH/Telnet honeypot using AWS EC2 a
    Source: Anywhere IPv4 (0.0.0.0/0)
    Description: Honeypot Telnet (fake)
    ```
+  ![Example AWS Security Group](https://paradoxal.s-ul.eu/PADSTL8W)
+
    
    ⚠️ **CRITICAL**: You MUST add port 2200 BEFORE running the setup script!
 
