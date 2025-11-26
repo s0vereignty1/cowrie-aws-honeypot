@@ -953,7 +953,7 @@ AWS Console → EC2 → Security Groups → Edit inbound rules:
 
 ### 1. Discord Webhooks for Real-Time Alerts
 
-The `abuseipdb-enrichment.py` script automatically checks new IPs against AbuseIPDB and sends Discord alerts for high-risk threats.
+The `discord_enrichment.py` script automatically checks new IPs against AbuseIPDB and sends Discord alerts for high-risk threats.
 
 **Installation on Raspberry Pi (Log Server):**
 
@@ -964,10 +964,10 @@ mkdir -p ~/discord_enrichment && cd ~/discord_enrichment
 
 **Step 2: Download the enrichment script:**
 ```bash
-wget https://raw.githubusercontent.com/s0vereignty1/cowrie-aws-honeypot/main/abuseipdb-enrichment.py
+wget https://raw.githubusercontent.com/s0vereignty1/cowrie-aws-honeypot/main/discord_enrichment.py
 # OR manually create it:
-nano abuseipdb-enrichment.py
-# Then paste the content from abuseipdb-enrichment.py file
+nano discord_enrichment.py
+# Then paste the content from discord_enrichment.py file
 ```
 
 **Step 3: Install required Python packages:**
@@ -977,7 +977,7 @@ pip3 install requests elasticsearch --break-system-packages
 
 **Step 4: Configure your credentials:**
 ```bash
-nano abuseipdb-enrichment.py
+nano discord_enrichment.py
 ```
 
 Update these lines with your actual credentials:
@@ -988,8 +988,8 @@ DISCORD_WEBHOOK = "your_webhook_url_here"  # Create in Discord: Server Settings 
 
 **Step 5: Make executable and test:**
 ```bash
-chmod +x abuseipdb-enrichment.py
-python3 abuseipdb-enrichment.py
+chmod +x discord_enrichment.py
+python3 discord_enrichment.py
 ```
 
 You should see:
@@ -1011,20 +1011,20 @@ Press `Ctrl+C` to stop, then proceed to set up as a service.
 
 **Step 6: Create systemd service (runs automatically):**
 ```bash
-sudo nano /etc/systemd/system/abuseipdb-enrichment.service
+sudo nano /etc/systemd/system/discord_enrichment.service
 ```
 
 Paste this content:
 ```ini
 [Unit]
-Description=AbuseIPDB Honeypot Enrichment Service
+Description=Discord Enrichment Service
 After=network.target elasticsearch.service
 
 [Service]
 Type=simple
 User=pi
 WorkingDirectory=/home/pi/discord_enrichment
-ExecStart=/usr/bin/python3 /home/pi/discord_enrichment/abuseipdb-enrichment.py
+ExecStart=/usr/bin/python3 /home/pi/discord_enrichment/discord_enrichment.py
 Restart=always
 RestartSec=10
 
@@ -1038,29 +1038,29 @@ WantedBy=multi-user.target
 sudo systemctl daemon-reload
 
 # Enable service (start on boot)
-sudo systemctl enable abuseipdb-enrichment
+sudo systemctl enable discord_enrichment
 
 # Start service now
-sudo systemctl start abuseipdb-enrichment
+sudo systemctl start discord_enrichment
 
 # Check status
-sudo systemctl status abuseipdb-enrichment
+sudo systemctl status discord_enrichment
 ```
 
 Expected output:
 ```
-● abuseipdb-enrichment.service - AbuseIPDB Honeypot Enrichment Service
-   Loaded: loaded (/etc/systemd/system/abuseipdb-enrichment.service; enabled)
+● discord_enrichment.service - Discord Enrichment Service
+   Loaded: loaded (/etc/systemd/system/discord_enrichment.service; enabled)
    Active: active (running) since Tue 2025-11-26 00:00:00 UTC; 5s ago
 ```
 
 **Step 8: Monitor logs:**
 ```bash
 # View live logs
-sudo journalctl -u abuseipdb-enrichment -f
+sudo journalctl -u discord_enrichment -f
 
 # View recent logs
-sudo journalctl -u abuseipdb-enrichment -n 50
+sudo journalctl -u discord_enrichment -n 50
 ```
 
 **Features:**
@@ -1071,9 +1071,6 @@ sudo journalctl -u abuseipdb-enrichment -n 50
 - ✅ Duplicate prevention (won't alert twice)
 - ✅ 24-hour caching
 - ✅ Automatic restart on failure
-```
-**Last step is to paste the content of discord_encrichment.py**
-
 ### Maintenance Schedule
 
 **Daily:**
