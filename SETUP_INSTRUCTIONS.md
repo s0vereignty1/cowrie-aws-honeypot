@@ -1116,8 +1116,6 @@ For issues specific to this setup:
 
 ---
 
-**⚠️ Disclaimer:** This honeypot is for cybersecurity research and educational purposes only. Always comply with applicable laws and regulations. Never deploy on production networks or systems containing real data.
+**⚠️ Ethical Disclaimer:** This honeypot is for cybersecurity research and educational purposes only. Some AI was used to generate these setup instructions.
 
----
 
-**🎉 Congratulations!** You now have a fully operational distributed honeypot system capturing real-world cyber attacks!
