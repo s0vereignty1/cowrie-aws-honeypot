@@ -951,14 +951,126 @@ AWS Console → EC2 → Security Groups → Edit inbound rules:
 
 ### Advanced Features
 
-**1. Discord Webhooks for real-time alerts:**
+### 1. Discord Webhooks for Real-Time Alerts
 
-See discord_encrichment.py on your log pi or whatever other host you are using as your log server run 
+The `abuseipdb-enrichment.py` script automatically checks new IPs against AbuseIPDB and sends Discord alerts for high-risk threats.
+
+**Installation on Raspberry Pi (Log Server):**
+
+**Step 1: Create directory and navigate to it:**
 ```bash
-mkdir discord_enrichment && cd discord_enrichment
+mkdir -p ~/discord_enrichment && cd ~/discord_enrichment
 ```
+
+**Step 2: Download the enrichment script:**
 ```bash
-sudo nano discord_enrichment.py
+wget https://raw.githubusercontent.com/s0vereignty1/cowrie-aws-honeypot/main/abuseipdb-enrichment.py
+# OR manually create it:
+nano abuseipdb-enrichment.py
+# Then paste the content from abuseipdb-enrichment.py file
+```
+
+**Step 3: Install required Python packages:**
+```bash
+pip3 install requests elasticsearch --break-system-packages
+```
+
+**Step 4: Configure your credentials:**
+```bash
+nano abuseipdb-enrichment.py
+```
+
+Update these lines with your actual credentials:
+```python
+ABUSEIPDB_API_KEY = "your_api_key_here"  # Get free key at https://www.abuseipdb.com/api
+DISCORD_WEBHOOK = "your_webhook_url_here"  # Create in Discord: Server Settings → Integrations → Webhooks
+```
+
+**Step 5: Make executable and test:**
+```bash
+chmod +x abuseipdb-enrichment.py
+python3 abuseipdb-enrichment.py
+```
+
+You should see:
+```
+======================================================================
+🔍 AbuseIPDB Honeypot Enrichment Service v2.0
+======================================================================
+Started at: 2025-11-26 00:00:00
+Elasticsearch: http://localhost:9200
+Check interval: 60 seconds
+High-risk threshold: 75%
+Moderate-risk threshold: 50%
+API key configured: Yes ✓
+Duplicate prevention: Enabled ✓
+======================================================================
+```
+
+Press `Ctrl+C` to stop, then proceed to set up as a service.
+
+**Step 6: Create systemd service (runs automatically):**
+```bash
+sudo nano /etc/systemd/system/abuseipdb-enrichment.service
+```
+
+Paste this content:
+```ini
+[Unit]
+Description=AbuseIPDB Honeypot Enrichment Service
+After=network.target elasticsearch.service
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi/discord_enrichment
+ExecStart=/usr/bin/python3 /home/pi/discord_enrichment/abuseipdb-enrichment.py
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
+```
+
+**Step 7: Enable and start the service:**
+```bash
+# Reload systemd
+sudo systemctl daemon-reload
+
+# Enable service (start on boot)
+sudo systemctl enable abuseipdb-enrichment
+
+# Start service now
+sudo systemctl start abuseipdb-enrichment
+
+# Check status
+sudo systemctl status abuseipdb-enrichment
+```
+
+Expected output:
+```
+● abuseipdb-enrichment.service - AbuseIPDB Honeypot Enrichment Service
+   Loaded: loaded (/etc/systemd/system/abuseipdb-enrichment.service; enabled)
+   Active: active (running) since Tue 2025-11-26 00:00:00 UTC; 5s ago
+```
+
+**Step 8: Monitor logs:**
+```bash
+# View live logs
+sudo journalctl -u abuseipdb-enrichment -f
+
+# View recent logs
+sudo journalctl -u abuseipdb-enrichment -n 50
+```
+
+**Features:**
+- ✅ Checks new IPs every 60 seconds
+- ✅ Enriches Elasticsearch with threat intelligence
+- ✅ Sends Discord alerts for IPs with >50% abuse score
+- ✅ Rate limiting (950 API calls/day)
+- ✅ Duplicate prevention (won't alert twice)
+- ✅ 24-hour caching
+- ✅ Automatic restart on failure
 ```
 **Last step is to paste the content of discord_encrichment.py**
 
