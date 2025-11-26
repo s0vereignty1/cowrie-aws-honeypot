@@ -1023,6 +1023,6 @@ For issues specific to this setup:
 
 ---
 
-**⚠️ Ethical Disclaimer:** This honeypot is for cybersecurity research and educational purposes only. Some AI was used to generate these setup instructions.
+**⚠️ Ethics Disclaimer:** This honeypot is for cybersecurity research and educational purposes only. Some AI was used to generate these setup instructions.
 
 
