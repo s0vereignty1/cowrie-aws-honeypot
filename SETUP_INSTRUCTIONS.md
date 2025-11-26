@@ -133,11 +133,11 @@ mkdir -p ~/aws-cowrie
 cd ~/aws-cowrie
 
 # Download setup script
-wget https://raw.githubusercontent.com/YOUR_REPO/aws-setup.sh
+wget https://raw.githubusercontent.com/s0vereignty1/cowrie-aws-honeypot/main/honeypot_setup.sh
 # OR manually create it from aws-setup.sh file provided
 
 # Make executable
-chmod +x aws-setup.sh
+chmod +x honeypot_setup.sh
 ```
 
 ### Step 1.4: Run Setup Script
@@ -313,68 +313,117 @@ nano logstash/pipeline/cowrie.conf
 
 **Paste this content:**
 
-```ruby
 input {
   beats {
     port => 5044
+    type => "cowrie"
   }
 }
 
 filter {
-  # Parse Cowrie JSON logs
-  if [log_type] == "cowrie_honeypot" {
+  if [type] == "cowrie" or [log_type] == "cowrie" {
+    # Parse timestamp
+    if [timestamp] {
+      date {
+        match => [ "timestamp", "ISO8601" ]
+        target => "@timestamp"
+      }
+    }
     
-    # Add GeoIP data for source IPs
+    # GeoIP enrichment
     if [src_ip] {
       geoip {
         source => "src_ip"
         target => "geoip"
+        fields => [
+          "city_name",
+          "country_name",
+          "country_code2",
+          "country_code3",
+          "continent_code",
+          "location",
+          "region_name",
+          "timezone"
+        ]
+      }
+      
+      geoip {
+        source => "src_ip"
+        target => "geoip_asn"
+        default_database_type => "ASN"
       }
     }
     
-    # Categorize events
+    # Tag successful logins
     if [eventid] == "cowrie.login.success" {
       mutate {
-        add_field => { "event_category" => "authentication_success" }
+        add_tag => ["authentication", "successful_login", "alert"]
       }
     }
     
+    # Tag failed logins
     if [eventid] == "cowrie.login.failed" {
       mutate {
-        add_field => { "event_category" => "authentication_failure" }
+        add_tag => ["authentication", "failed_login"]
       }
     }
     
+    # Tag and detect dangerous commands
     if [eventid] == "cowrie.command.input" {
       mutate {
-        add_field => { "event_category" => "command_execution" }
+        add_tag => ["command"]
+      }
+      
+      if [input] =~ /wget|curl|chmod|\/bin\/sh|bash|nc|nmap|perl|python/ {
+        mutate {
+          add_tag => ["dangerous_command", "alert"]
+        }
       }
     }
     
-    if [eventid] =~ /download/ {
+    # Tag session events
+    if [eventid] == "cowrie.session.connect" {
       mutate {
-        add_field => { "event_category" => "malware_download" }
+        add_tag => ["session_start"]
       }
     }
     
-    # Add timestamp
-    date {
-      match => [ "timestamp", "ISO8601" ]
-      target => "@timestamp"
+    if [eventid] == "cowrie.session.closed" {
+      mutate {
+        add_tag => ["session_end"]
+      }
+    }
+    
+    # Tag malware downloads
+    if [eventid] == "cowrie.session.file_download" {
+      mutate {
+        add_tag => ["malware_download", "file_download", "alert"]
+      }
+    }
+    
+    # Set daily index pattern
+    mutate {
+      add_field => {
+        "[@metadata][index]" => "cowrie-%{+YYYY.MM.dd}"
+      }
+    }
+    
+    # Clean up unnecessary fields
+    mutate {
+      remove_field => ["agent", "ecs", "host", "log", "input"]
     }
   }
 }
 
 output {
-  elasticsearch {
-    hosts => ["elasticsearch:9200"]
-    index => "cowrie-honeypot-%{+YYYY.MM.dd}"
+  if [type] == "cowrie" or [log_type] == "cowrie" {
+    elasticsearch {
+      hosts => ["elasticsearch:9200"]
+      index => "%{[@metadata][index]}"
+      document_type => "_doc"
+    }
   }
-  
-  # Uncomment for debugging
-  # stdout { codec => rubydebug }
 }
-```
 
 Save: `Ctrl+O`, `Enter`, `Ctrl+X`
 
