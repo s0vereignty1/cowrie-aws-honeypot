@@ -953,19 +953,14 @@ AWS Console → EC2 → Security Groups → Edit inbound rules:
 
 **1. Discord Webhooks for real-time alerts:**
 
-Create webhook in Discord, then add to logstash output:
-```ruby
-output {
-  http {
-    url => "https://discord.com/api/webhooks/YOUR_WEBHOOK"
-    http_method => "post"
-    format => "json"
-    mapping => {
-      "content" => "New honeypot attack from %{src_ip}"
-    }
-  }
-}
+See discord_encrichment.py on your log pi or whatever other host you are using as your log server run 
+```bash
+mkdir discord_enrichment && cd discord_enrichment
 ```
+```bash
+sudo nano discord_enrichment.py
+```
+**Last step is to paste the content of discord_encrichment.py**
 
 ### Maintenance Schedule
 
