@@ -312,7 +312,7 @@ nano logstash/pipeline/cowrie.conf
 ```
 
 **Paste this content:**
-
+```bash
 input {
   beats {
     port => 5044
