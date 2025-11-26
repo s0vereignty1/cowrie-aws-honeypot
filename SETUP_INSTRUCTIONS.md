@@ -790,15 +790,7 @@ You should see JSON data with your test attack:
 
 Within **24 hours**, you'll start seeing real attacks from internet scanners:
 
-**Common attack patterns:**
-
-| Source | Common Usernames | Common Passwords |
-|--------|------------------|------------------|
-| 🇨🇳 China | `root`, `admin`, `test` | `123456`, `password`, `admin` |
-| 🇷🇺 Russia | `ubuntu`, `user`, `guest` | `root`, `password123`, `admin123` |
-| 🇧🇷 Brazil | `administrator`, `admin` | `12345678`, `admin`, `password` |
-
-**Automated scanning bots** will try thousands of credentials within hours!
+**Automated scanning bots** will most likely start scanning within a few hours
 
 ---
 
@@ -957,47 +949,6 @@ AWS Console → EC2 → Security Groups → Edit inbound rules:
 - Keep port 22 for honeypot traffic (0.0.0.0/0)
 - Keep port 23 for honeypot traffic (0.0.0.0/0)
 
-**2. Enable CloudWatch Monitoring:**
-
-```bash
-# AWS Console → CloudWatch → Create alarms
-# Set up alerts for:
-# - CPU > 80%
-# - Disk > 85%
-# - Network anomalies
-```
-
-**3. Setup Automated Backups:**
-
-On Raspberry Pi:
-```bash
-# Create backup script
-nano ~/backup-elk.sh
-```
-
-Add:
-```bash
-#!/bin/bash
-DATE=$(date +%Y%m%d_%H%M%S)
-BACKUP_DIR="/mnt/usb/elk-backups"
-
-# Backup Elasticsearch data
-docker exec elasticsearch \
-  curl -X PUT "localhost:9200/_snapshot/backup_repo/snapshot_${DATE}?wait_for_completion=true"
-
-echo "Backup completed: snapshot_${DATE}"
-```
-
-Make executable and schedule:
-```bash
-chmod +x ~/backup-elk.sh
-
-# Add to crontab (daily at 2 AM)
-crontab -e
-# Add line:
-0 2 * * * /home/pi/backup-elk.sh >> /var/log/elk-backup.log 2>&1
-```
-
 ### Advanced Features
 
 **1. Discord Webhooks for real-time alerts:**
@@ -1014,50 +965,6 @@ output {
     }
   }
 }
-```
-
-**2. AbuseIPDB Integration:**
-
-Check IP reputation:
-```bash
-curl -G https://api.abuseipdb.com/api/v2/check \
-  --data-urlencode "ipAddress=1.2.3.4" \
-  -H "Key: YOUR_API_KEY" \
-  -H "Accept: application/json"
-```
-
-**3. Automated threat reporting script:**
-
-```bash
-nano ~/report-threats.sh
-```
-
-```bash
-#!/bin/bash
-# Report IPs with >50 login attempts to AbuseIPDB
-
-API_KEY="YOUR_ABUSEIPDB_KEY"
-
-curl "localhost:9200/cowrie-honeypot-*/_search" -H 'Content-Type: application/json' -d'
-{
-  "size": 0,
-  "aggs": {
-    "top_ips": {
-      "terms": {
-        "field": "src_ip.keyword",
-        "size": 100,
-        "min_doc_count": 50
-      }
-    }
-  }
-}' | jq -r '.aggregations.top_ips.buckets[].key' | while read ip; do
-  echo "Reporting $ip to AbuseIPDB..."
-  curl https://api.abuseipdb.com/api/v2/report \
-    --data-urlencode "ip=$ip" \
-    --data "categories=18,22" \
-    --data "comment=SSH brute force detected by honeypot" \
-    -H "Key: $API_KEY"
-done
 ```
 
 ### Maintenance Schedule
