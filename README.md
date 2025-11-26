@@ -1,6 +1,6 @@
 # SSH/Telnet Honeypot - Threat Intelligence Research Project
 
-> A production honeypot deployment on AWS EC2 capturing and analyzing real-world cyberattacks over a 3-week period.
+>  honeypot deployment on AWS EC2 capturing and analyzing real-world cyberattacks over a 3-week period.
 
 [![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat&logo=docker&logoColor=white)](https://www.docker.com/)
 [![AWS](https://img.shields.io/badge/AWS-232F3E?style=flat&logo=amazon-aws&logoColor=white)](https://aws.amazon.com/)
@@ -70,13 +70,6 @@ Deployed a Cowrie SSH/Telnet honeypot to capture real attacker behavior, analyze
 - Attempts: 3,572 connections (64% of all traffic)
 - Pattern: Automated botnet scanner
 
-### Attack Distribution
-
-![Top Attacking IPs](screenshots/top-attackers.png)
-
-[📈 Full Analysis & Visualizations](docs/findings.md)
-
-
 ### Technologies Used
 - **Cloud Platform:** AWS EC2 (Ubuntu 24.04)
 - **Honeypot:** Cowrie
@@ -98,11 +91,6 @@ Deployed a Cowrie SSH/Telnet honeypot to capture real attacker behavior, analyze
 
 ## 💡 Lessons Learned
 
-**Security Insights:**
-- [What you learned about attacker behavior]
-- [Common attack patterns you observed]
-- [Why certain credentials are targeted]
-
 **Technical Skills:**
 - Hands-on experience with cloud security infrastructure
 - Log aggregation with ELK Stack
@@ -114,6 +102,9 @@ Deployed a Cowrie SSH/Telnet honeypot to capture real attacker behavior, analyze
 - [ ] Add HTTP/HTTPS honeypot (Glastopf)
 - [ ] Machine learning for attack pattern detection
 - [ ] Multi-region deployment for broader coverage
+
+## 👨‍💻Setup Instructions 
+If you want to do this yourself I have included some setup instructions and a setup script at [SETUP INSTRUCTIONS](SETUP_INSTRUCTIONS.md)
 
 ## 📝 License
 
